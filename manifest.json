@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "HeadTab",
+  "version": "2.0",
+  "description": "A clean new tab page",
+  "author": "sverben",
+  "chrome_url_overrides": {
+    "newtab": "public/html/index.html"
+  },
+  "permissions": [
+    "bookmarks",
+    "unlimitedStorage",
+    "tabs"
+  ],
+  "icons": {
+    "128": "public/media/logo.png"
+  }
+}

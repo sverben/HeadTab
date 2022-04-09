@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    display: flex;
+    background-color: #22222C;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+}
+
+h2 {
+    text-align: center;
+}
+
+.categories {
+    background-color: #303039;
+    box-shadow: black 0px 0px 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    justify-content: center;
+}
+
+.category {
+    padding: 15px 15px 15px 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    background-color: #22222C;
+    text-transform: uppercase;
+    font-weight: bolder;
+    position: relative;
+    cursor: pointer;
+}
+.accent {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(to right, #76b852, #8dc26f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    transition: .4s ease;
+    z-index: 0;
+}
+
+.category p {
+   margin: 0;
+   position: relative;
+}
+
+.selected .accent {
+    border-radius: 7px;
+    width: 100%;
+}
+
+.settings {
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.line {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    gap: 7px;
+}
+.spacer {
+    flex: 1;
+}
+.name {
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+.help {
+    font-size: 15px;
+    color: white;
+    background-color: #303039;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+.help p {
+    position: absolute;
+    top: calc(-100% - 30px);
+    font-size: 11px;
+    height: 13px;
+    width: max-content;
+    left: -10px;
+    background-color: #303039;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 100;
+}
+.help p:after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    bottom: -5px;
+    background-color: #303039;
+    transform: rotate(45deg);
+}
+
+select, .text {
+    background-color: #303039;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+    outline: 0;
+    border: 1px solid #303039;
+    transition: .4s ease;
+}
+select:focus, .text:focus {
+    border: 1px solid #ffffff50;
+}
+
+.text {
+    width: 280px;
+}
+
+.check {
+    position: relative;
+    background-color: #303039;
+    border-radius: 25px;
+    width: 46px;
+    height: 23px;
+    padding: 2px;
+    cursor: pointer;
+    transition: .4s ease;
+}
+.check.on {
+    background-color: #76b852;
+}
+.check:before {
+    width: 23px;
+    height: 23px;
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: white;
+    border-radius: 100%;
+    transition: .4s ease;
+}
+.on:before {
+
+    left: 25px;
+}
+.close {
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #303039;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+.info {
+    font-size: 15px;
+}
+.info b {
+    font-size: 17px;
+}
