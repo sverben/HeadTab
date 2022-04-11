@@ -9,6 +9,8 @@ const weatherLine = document.querySelector("#weatherLine");
 const weather = document.querySelector("#weather");
 const info = document.querySelector(".info");
 const text = document.querySelector(".text");
+const battery = document.querySelector(".battery");
+const level = document.querySelector('.level');
 
 if (parseFloat(localStorage.getItem("lastVersion")) < 2) {
     localStorage.clear();
@@ -22,6 +24,7 @@ if (!localStorage.getItem("info")) localStorage.setItem("info", "true");
 if (!localStorage.getItem("bookmarks")) localStorage.setItem("bookmarks", "true");
 if (!localStorage.getItem("audios")) localStorage.setItem("audios", "true");
 if (!localStorage.getItem("text")) localStorage.setItem("text", "Hello World!");
+if (!localStorage.getItem("battery")) localStorage.setItem("battery", "true");
 
 text.innerText = localStorage.getItem("text");
 if (localStorage.getItem("info") === "true") {
@@ -307,3 +310,11 @@ function isEqual (value, other) {
 }
 
 if (localStorage.getItem("audios") === "true") audioUpdates();
+if (localStorage.getItem("battery") !== "true") battery.style.display = "none";
+
+(async () => {
+    await navigator.getBattery().then(battery => {
+        level.style.height = `${battery.level * 100}%`;
+        level.title = `Battery: ${battery.level * 100}%${battery.charging ? '\nCharging' : ''}`;
+    });
+})();

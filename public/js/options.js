@@ -80,6 +80,12 @@ const categories = [
                 "description": "Displays the tabs playing audio on the bottom right",
                 "type": "check",
                 "storage": "audios"
+            },
+            {
+                "name": "Battery",
+                "description": "Displays the battery percentage on the bottom left",
+                "type": "check",
+                "storage": "battery"
             }
         ]
     },
