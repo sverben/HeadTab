@@ -165,6 +165,12 @@ h2 {
 .icons img:hover {
     filter: opacity(1);
 }
+.notFound {
+    filter: invert(1) opacity(.7) !important;
+}
+.notFound:hover {
+    filter: invert(1) opacity(1) !important;
+}
 .github-icon:hover, .settings-icon:hover {
     filter: invert(1) opacity(1) !important;
 }
@@ -179,6 +185,8 @@ h2 {
 
 .audio {
     float: right;
+    display: flex;
+    gap: 5px;
 }
 
 .widget {

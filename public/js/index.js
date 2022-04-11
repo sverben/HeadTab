@@ -219,6 +219,10 @@ function audioPlaying(tabs) {
         const audicon = document.createElement('img');
         audicon.classList.add('audicon');
         audicon.src = tab['favIconUrl'];
+        if (!tab['favIconUrl']) {
+            audicon.src = '../media/globe.svg';
+            audicon.classList.add("notFound");
+        }
         audicon.title = tab['title'];
         audicon.addEventListener("click", () => {
             chrome.tabs.update(tab["id"], {active: true});
