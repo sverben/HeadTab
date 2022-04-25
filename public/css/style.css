@@ -17,6 +17,7 @@ body {
     left: 20px;
     top: 20px;
     padding-bottom: 10px;
+    text-align: justify;
 }
 .line {
     content: " ";
@@ -263,5 +264,88 @@ h2 {
     100% {
         transform: translateY(63px);
         position: unset;
+    }
+}
+
+.musicLine {
+    position: relative;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    max-width: 100%;
+    transition: 1s ease;
+}
+
+.media {
+    position: relative;
+    width: 22px;
+    height: 22px;
+}
+
+.company {
+    width: 22px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    animation: 1.5s moveIn ease forwards;
+}
+
+.artwork {
+    width: 22px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.musicName {
+    position: absolute;
+    left: 27px;
+    width: calc(100% - 27px);
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    animation: 1s fromLeft ease forwards;
+}
+
+@keyframes fromLeft {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: calc(100% - 27px);
+    }
+}
+
+@keyframes toLeft {
+    0% {
+        width: calc(100% - 27px);
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        top: 0;
+        left: 0;
+        width: 22px;
+        bottom: unset;
+        right: unset;
+    }
+    75% {
+        top: 0;
+        left: 0;
+        width: 22px;
+        bottom: unset;
+        right: unset;
+    }
+    100% {
+        top: 11px;
+        left: 11px;
+        width: 11px;
     }
 }

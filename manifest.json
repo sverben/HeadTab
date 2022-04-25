@@ -10,7 +10,11 @@
   "permissions": [
     "bookmarks",
     "unlimitedStorage",
-    "tabs"
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://open.spotify.com/*"
   ],
   "icons": {
     "128": "public/media/logo.png"

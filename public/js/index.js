@@ -11,6 +11,10 @@ const info = document.querySelector(".info");
 const text = document.querySelector(".text");
 const battery = document.querySelector(".battery");
 const level = document.querySelector('.level');
+const musicLine = document.querySelector(".musicLine");
+const artwork = document.querySelector(".artwork");
+const company = document.querySelector(".company");
+const musicName = document.querySelector(".musicName");
 
 if (parseFloat(localStorage.getItem("lastVersion")) < 2) {
     localStorage.clear();
@@ -25,6 +29,7 @@ if (!localStorage.getItem("bookmarks")) localStorage.setItem("bookmarks", "true"
 if (!localStorage.getItem("audios")) localStorage.setItem("audios", "true");
 if (!localStorage.getItem("text")) localStorage.setItem("text", "Hello World!");
 if (!localStorage.getItem("battery")) localStorage.setItem("battery", "true");
+if (!localStorage.getItem("spotify")) localStorage.setItem("spotify", "true");
 
 text.innerText = localStorage.getItem("text");
 if (localStorage.getItem("info") === "true") {
@@ -228,8 +233,39 @@ function audioPlaying(tabs) {
             chrome.tabs.update(tab["id"], {active: true});
         })
 
-        audicons.append(audicon);
+        if (tab['url'].includes("spotify.com/") && !oldaudios.includes(tab) && localStorage.getItem("spotify") === "true") {
+            musicLine.style.display = "flex";
+            company.src = tab['favIconUrl'];
+
+            setTimeout(() => {
+                musicLine.style.transform = "translateX(-200%)";
+                musicName.style.animation = "1s fromLeft ease forwards";
+                setTimeout(() => {
+                    musicLine.style.display = "none";
+                    musicLine.style.transform = "";
+                }, 1000);
+            }, 5000);
+            setTimeout(() => {
+                musicName.style.animation = "1s toLeft ease forwards";
+            }, 4000);
+            chrome.scripting.executeScript({
+                target: {tabId: tab["id"]},
+                func: getArtwork
+            }, src => {
+                artwork.src = src[0].result;
+            })
+            musicName.innerText = tab['title'];
+        }
+
+        if (localStorage.getItem("audios") === "true")
+            audicons.append(audicon);
     }
+}
+
+function getArtwork() {
+    const artwork = document.querySelector(".cover-art-image");
+
+    return artwork.src;
 }
 
 let audios;
@@ -313,7 +349,7 @@ function isEqual (value, other) {
 
 }
 
-if (localStorage.getItem("audios") === "true") audioUpdates();
+audioUpdates();
 if (localStorage.getItem("battery") !== "true") battery.style.display = "none";
 
 (async () => {
