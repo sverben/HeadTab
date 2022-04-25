@@ -14,7 +14,8 @@
     "scripting"
   ],
   "host_permissions": [
-    "*://open.spotify.com/*"
+    "*://open.spotify.com/*",
+    "*://www.youtube.com/*"
   ],
   "icons": {
     "128": "public/media/logo.png"

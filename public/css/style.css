@@ -283,11 +283,12 @@ h2 {
 }
 
 .company {
-    width: 22px;
+    width: 16px;
     border-radius: 50%;
     position: absolute;
     top: 0;
     left: 0;
+    padding: 3px;
     background-color: #ffffff;
     animation: 1.5s moveIn ease forwards;
 }
@@ -332,20 +333,26 @@ h2 {
     0% {
         top: 0;
         left: 0;
-        width: 22px;
+        width: 16px;
         bottom: unset;
         right: unset;
+        padding: 3px;
+        background-color: #ffffff;
     }
     75% {
         top: 0;
         left: 0;
-        width: 22px;
+        width: 16px;
         bottom: unset;
         right: unset;
+        padding: 3px;
+        background-color: #ffffff;
     }
     100% {
         top: 11px;
         left: 11px;
         width: 11px;
+        padding: unset;
+        background-color: unset;
     }
 }

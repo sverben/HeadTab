@@ -30,6 +30,7 @@ if (!localStorage.getItem("audios")) localStorage.setItem("audios", "true");
 if (!localStorage.getItem("text")) localStorage.setItem("text", "Hello World!");
 if (!localStorage.getItem("battery")) localStorage.setItem("battery", "true");
 if (!localStorage.getItem("spotify")) localStorage.setItem("spotify", "true");
+if (!localStorage.getItem("youtube")) localStorage.setItem("youtube", "true");
 
 text.innerText = localStorage.getItem("text");
 if (localStorage.getItem("info") === "true") {
@@ -234,27 +235,10 @@ function audioPlaying(tabs) {
         })
 
         if (tab['url'].includes("spotify.com/") && !oldaudios.includes(tab) && localStorage.getItem("spotify") === "true") {
-            musicLine.style.display = "flex";
-            company.src = tab['favIconUrl'];
-
-            setTimeout(() => {
-                musicLine.style.transform = "translateX(-200%)";
-                musicName.style.animation = "1s fromLeft ease forwards";
-                setTimeout(() => {
-                    musicLine.style.display = "none";
-                    musicLine.style.transform = "";
-                }, 1000);
-            }, 5000);
-            setTimeout(() => {
-                musicName.style.animation = "1s toLeft ease forwards";
-            }, 4000);
-            chrome.scripting.executeScript({
-                target: {tabId: tab["id"]},
-                func: getArtwork
-            }, src => {
-                artwork.src = src[0].result;
-            })
-            musicName.innerText = tab['title'];
+            handleMusicIntegration(tab, getArtwork);
+        }
+        if (tab['url'].includes("youtube.com/") && !oldaudios.includes(tab) && localStorage.getItem("youtube") === "true") {
+            handleMusicIntegration(tab, getYoutubeArtwork);
         }
 
         if (localStorage.getItem("audios") === "true")
@@ -262,8 +246,37 @@ function audioPlaying(tabs) {
     }
 }
 
+function handleMusicIntegration(tab, getArtwork) {
+    musicLine.style.display = "flex";
+    company.src = tab['favIconUrl'];
+
+    setTimeout(() => {
+        musicLine.style.transform = "translateX(-200%)";
+        musicName.style.animation = "1s fromLeft ease forwards";
+        setTimeout(() => {
+            musicLine.style.display = "none";
+            musicLine.style.transform = "";
+        }, 1000);
+    }, 5000);
+    setTimeout(() => {
+        musicName.style.animation = "1s toLeft ease forwards";
+    }, 4000);
+    chrome.scripting.executeScript({
+        target: {tabId: tab["id"]},
+        func: getArtwork
+    }, src => {
+        artwork.src = src[0].result;
+    })
+    musicName.innerText = tab['title'];
+}
+
 function getArtwork() {
     const artwork = document.querySelector(".cover-art-image");
+
+    return artwork.src;
+}
+function getYoutubeArtwork() {
+    const artwork = document.querySelector("#avatar.style-scope.ytd-video-owner-renderer.no-transition img")
 
     return artwork.src;
 }

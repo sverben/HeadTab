@@ -74,6 +74,12 @@ const categories = [
                 "description": "Display currently playing songs and artworks on the info dashboard",
                 "type": "check",
                 "storage": "spotify"
+            },
+            {
+                "name": "YouTube integration",
+                "description": "Display currently playing videos on the info dashboard",
+                "type": "check",
+                "storage": "youtube"
             }
         ]
     },
