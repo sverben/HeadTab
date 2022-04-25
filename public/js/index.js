@@ -43,28 +43,9 @@ if (localStorage.getItem("lastVersion") !== "2.0") {
     window.location.assign("update.html");
 }
 const background = localStorage.getItem("background");
-const url = background === "default" ? "../media/wallpaper.jpg" : background;
-if (url !== "upload" && localStorage.getItem("uploadURL") !== url) {
-    newBackground(true);
-} else {
-    document.body.style.background = `url(${localStorage.getItem("upload")}) no-repeat`;
-    if (url !== "upload") newBackground(false);
-}
-function newBackground(apply) {
-    const img = new Image();
-    img.crossOrigin="anonymous";
-    img.src = url;
-    img.onload = () => {
-        const canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        localStorage.setItem("upload", canvas.toDataURL());
-        localStorage.setItem("uploadURL", url);
-        if (apply) document.body.style.background = `url(${localStorage.getItem("upload")}) no-repeat`;
-    };
-}
+const upload = localStorage.getItem("upload");
+const url = background === "default" ? "../media/wallpaper.jpg" : upload;
+document.body.style.background = `url(${url}) no-repeat`;
 
 settings.addEventListener("click", () => {
     window.location.assign("settings.html");
