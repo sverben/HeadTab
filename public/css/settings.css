@@ -186,3 +186,7 @@ input[type=file] {
 .info b {
     font-size: 17px;
 }
+
+a {
+    color: #49caf4;
+}
