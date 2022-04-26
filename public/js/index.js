@@ -15,6 +15,8 @@ const musicLine = document.querySelector(".musicLine");
 const artwork = document.querySelector(".artwork");
 const company = document.querySelector(".company");
 const musicName = document.querySelector(".musicName");
+const lyrics = document.querySelector(".lyric");
+const oldLyrics = document.querySelector(".oldLyric");
 
 if (parseFloat(localStorage.getItem("lastVersion")) < 2) {
     localStorage.clear();
@@ -31,6 +33,7 @@ if (!localStorage.getItem("text")) localStorage.setItem("text", "Hello World!");
 if (!localStorage.getItem("battery")) localStorage.setItem("battery", "true");
 if (!localStorage.getItem("spotify")) localStorage.setItem("spotify", "true");
 if (!localStorage.getItem("youtube")) localStorage.setItem("youtube", "true");
+if (!localStorage.getItem("lyrics")) localStorage.setItem("lyrics", "true");
 
 text.innerText = localStorage.getItem("text");
 if (localStorage.getItem("info") === "true") {
@@ -218,6 +221,9 @@ function audioPlaying(tabs) {
         if (tab['url'].includes("spotify.com/") && !oldaudios.includes(tab) && localStorage.getItem("spotify") === "true") {
             handleMusicIntegration(tab, getArtwork);
         }
+        if (tab['url'].includes("spotify.com/") && !oldaudios.includes(tab) && localStorage.getItem("lyrics") === "true") {
+            spotifyWorker(tab["id"]);
+        }
         if (tab['url'].includes("youtube.com/") && !oldaudios.includes(tab) && localStorage.getItem("youtube") === "true") {
             handleMusicIntegration(tab, getYoutubeArtwork);
         }
@@ -260,6 +266,46 @@ function getYoutubeArtwork() {
     const artwork = document.querySelector("#avatar.style-scope.ytd-video-owner-renderer.no-transition img")
 
     return artwork.src;
+}
+
+let oldWorker = null;
+let lyric = null;
+function spotifyWorker(id) {
+    if (oldWorker) clearInterval(oldWorker);
+
+    oldWorker = setInterval(() => {
+        chrome.scripting.executeScript({
+            target: {tabId: id},
+            func: getLyric
+        }, result => {
+            if (result[0].result === lyric) return;
+            if (!result[0].result) {
+                lyrics.innerText = "";
+                oldLyrics.innerText = "";
+                return;
+            }
+            lyrics.style.animation = "1s swipeIn ease forwards";
+            lyrics.innerText = result[0].result;
+            oldLyrics.innerText = lyric;
+            oldLyrics.style.transform = "translateY(-110%)";
+            oldLyrics.style.filter = "opacity(0)";
+            setTimeout(() => {
+                oldLyrics.style.filter = "opacity(1)";
+                oldLyrics.style.transform = "";
+                oldLyrics.innerText = "";
+                lyrics.style.animation = "";
+            }, 1000);
+
+            lyric = result[0].result;
+        })
+    }, 60)
+}
+
+function getLyric() {
+    const el = document.querySelectorAll(".Re403AJffPPuZmX7LRJj");
+    if (el.length < 2) return null;
+
+    return el[1].innerText;
 }
 
 let audios;

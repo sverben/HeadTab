@@ -80,6 +80,12 @@ const categories = [
                 "description": "Display currently playing videos on the info dashboard",
                 "type": "check",
                 "storage": "youtube"
+            },
+            {
+                "name": "Lyrics",
+                "description": "Display lyrics from spotify on the info dashboard when turned on in Spotify",
+                "type": "check",
+                "storage": "lyrics"
             }
         ]
     },
