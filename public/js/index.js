@@ -41,8 +41,8 @@ if (localStorage.getItem("info") === "true") {
 } else {
   info.style.display = "none";
 }
-if (localStorage.getItem("lastVersion") !== "2.0") {
-    localStorage.setItem("lastVersion", "2.0");
+if (localStorage.getItem("lastVersion") !== "2.1") {
+    localStorage.setItem("lastVersion", "2.1");
     window.location.assign("update.html");
 }
 const background = localStorage.getItem("background");
