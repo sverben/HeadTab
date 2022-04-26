@@ -99,31 +99,35 @@ function open(category) {
         }
         else if (setting.type === "text") {
             const line = document.createElement("div");
+            line.classList.add("line");
             const input = document.createElement("input");
             input.type = "text";
             input.value = localStorage.getItem(setting.storage);
             input.addEventListener("input", () => {
+                if (setting.file) return;
                 localStorage.setItem(setting.storage, input.value);
             });
             line.append(input);
             input.classList.add("text");
             if (setting.file) {
-                input.addEventListener("drop", e => {
-                    e.preventDefault();
-                    if (!e.dataTransfer.items) return;
+                input.type = "file";
+                input.addEventListener("change", e => {
+                    if (!input.files) return;
 
                     localStorage.setItem(setting.storage, "upload");
-                    input.value = "upload";
-                    getBase64(e.dataTransfer.items[0].getAsFile()).then(data => {
+                    getBase64(input.files[0]).then(data => {
                         localStorage.setItem("upload", data);
+                        input.value = null;
                     })
                 })
-                input.addEventListener("dragover", e => {
-                    e.preventDefault();
+                const reset = document.createElement("button");
+                reset.innerText = "Reset";
+                reset.addEventListener("click", () => {
+                    localStorage.setItem(setting.storage, "default");
+                    console.log("click");
                 })
-                input.addEventListener("dragenter", e => {
-                    e.preventDefault();
-                })
+                reset.classList.add("text", "btn");
+                line.append(reset);
             }
 
             el.append(line);

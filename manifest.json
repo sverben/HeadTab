@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HeadTab",
-  "version": "2.0",
+  "version": "2.1",
   "description": "A clean new tab page",
   "author": "sverben",
   "chrome_url_overrides": {
@@ -10,7 +10,12 @@
   "permissions": [
     "bookmarks",
     "unlimitedStorage",
-    "tabs"
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://open.spotify.com/*",
+    "*://www.youtube.com/*"
   ],
   "icons": {
     "128": "public/media/logo.png"

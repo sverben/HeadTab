@@ -67,6 +67,29 @@ const categories = [
         ]
     },
     {
+        "name": "Integrations",
+        "settings": [
+            {
+                "name": "Spotify integration",
+                "description": "Display currently playing songs and artworks on the info dashboard",
+                "type": "check",
+                "storage": "spotify"
+            },
+            {
+                "name": "YouTube integration",
+                "description": "Display currently playing videos on the info dashboard",
+                "type": "check",
+                "storage": "youtube"
+            },
+            {
+                "name": "Lyrics",
+                "description": "Display lyrics from spotify on the info dashboard when turned on in Spotify",
+                "type": "check",
+                "storage": "lyrics"
+            }
+        ]
+    },
+    {
         "name": "Additional features",
         "settings": [
             {
@@ -80,6 +103,12 @@ const categories = [
                 "description": "Displays the tabs playing audio on the bottom right",
                 "type": "check",
                 "storage": "audios"
+            },
+            {
+                "name": "Battery",
+                "description": "Displays the battery percentage on the bottom left",
+                "type": "check",
+                "storage": "battery"
             }
         ]
     },
