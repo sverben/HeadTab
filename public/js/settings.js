@@ -115,16 +115,17 @@ function open(category) {
                     if (!input.files) return;
 
                     localStorage.setItem(setting.storage, "upload");
-                    getBase64(input.files[0]).then(data => {
-                        localStorage.setItem("upload", data);
+                    getBase64(input.files[0]).then(async data => {
+                        await chrome.storage.local.set({
+                            [setting.storage]: data
+                        })
                         input.value = null;
                     })
                 })
                 const reset = document.createElement("button");
                 reset.innerText = "Reset";
-                reset.addEventListener("click", () => {
-                    localStorage.setItem(setting.storage, "default");
-                    console.log("click");
+                reset.addEventListener("click", async () => {
+                    await chrome.storage.local.set({[setting.storage]: "default"});
                 })
                 reset.classList.add("text", "btn");
                 line.append(reset);

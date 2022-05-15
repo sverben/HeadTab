@@ -7,11 +7,16 @@
   "chrome_url_overrides": {
     "newtab": "public/html/index.html"
   },
+  "background": {
+    "service_worker": "sw.js"
+  },
   "permissions": [
     "bookmarks",
+    "storage",
     "unlimitedStorage",
     "tabs",
-    "scripting"
+    "scripting",
+    "contextMenus"
   ],
   "host_permissions": [
     "*://open.spotify.com/*",

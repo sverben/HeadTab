@@ -21,6 +21,30 @@ const oldLyrics = document.querySelector(".oldLyric");
 if (parseFloat(localStorage.getItem("lastVersion")) < 2) {
     localStorage.clear();
 }
+
+(async () => {
+    if (parseFloat(localStorage.getItem("lastVersion")) <= 2.1) {
+        if (localStorage.getItem("background") && localStorage.getItem("background") !== "default") {
+            await chrome.storage.local.set({
+                background: localStorage.getItem("upload")
+            });
+            localStorage.removeItem("background");
+            localStorage.removeItem("upload");
+        }
+    }
+
+    let background = await chrome.storage.local.get("background");
+    if (!background.background) {
+        background.background = "default";
+        await chrome.storage.local.set({
+            background: "default"
+        });
+    }
+
+    const url = background.background === "default" ? "../media/wallpaper.jpg" : background.background;
+    document.body.style.background = `url(${url}) no-repeat`;
+})()
+
 if (!localStorage.getItem("background")) localStorage.setItem("background", "default");
 if (!localStorage.getItem("location")) localStorage.setItem("location", "New York");
 if (!localStorage.getItem("weather")) localStorage.setItem("weather", "true");
@@ -41,14 +65,10 @@ if (localStorage.getItem("info") === "true") {
 } else {
   info.style.display = "none";
 }
-if (localStorage.getItem("lastVersion") !== "2.1") {
-    localStorage.setItem("lastVersion", "2.1");
+if (localStorage.getItem("lastVersion") !== "2.2") {
+    localStorage.setItem("lastVersion", "2.2");
     window.location.assign("update.html");
 }
-const background = localStorage.getItem("background");
-const upload = localStorage.getItem("upload");
-const url = background === "default" ? "../media/wallpaper.jpg" : upload;
-document.body.style.background = `url(${url}) no-repeat`;
 
 settings.addEventListener("click", () => {
     window.location.assign("settings.html");
