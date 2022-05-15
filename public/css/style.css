@@ -9,6 +9,7 @@ html {
 body {
     margin: 0;
     background-size: cover !important;
+    background-position: center !important;
 }
 
 
