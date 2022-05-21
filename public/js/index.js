@@ -322,10 +322,25 @@ function spotifyWorker(id) {
 }
 
 function getLyric() {
-    const el = document.querySelectorAll(".Re403AJffPPuZmX7LRJj");
-    if (el.length < 2) return null;
+    let el;
+    if (!window.lyricsParent) {
+        document.querySelectorAll("*").forEach(e => {
+            if (getComputedStyle(e).getPropertyValue("--animation-index") === "1") {
+                el = e;
+            }
+        })
+    } else {
+        window.lyricsParent.querySelectorAll("*").forEach(e => {
+            if (getComputedStyle(e).getPropertyValue("--animation-index") === "1") {
+                el = e;
+            }
+        })
+    }
 
-    return el[1].innerText;
+    if (!el) return null;
+    window.lyricsParent = el.parentElement;
+
+    return el.innerText;
 }
 
 let audios;
