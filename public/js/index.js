@@ -323,19 +323,13 @@ function spotifyWorker(id) {
 
 function getLyric() {
     let el;
-    if (!window.lyricsParent) {
-        document.querySelectorAll("*").forEach(e => {
-            if (getComputedStyle(e).getPropertyValue("--animation-index") === "1") {
-                el = e;
-            }
-        })
-    } else {
-        window.lyricsParent.querySelectorAll("*").forEach(e => {
-            if (getComputedStyle(e).getPropertyValue("--animation-index") === "1") {
-                el = e;
-            }
-        })
-    }
+    document.querySelectorAll("div").forEach(e => {
+        const style = getComputedStyle(e);
+        const lyricsColor = style.getPropertyValue("--lyrics-color-active");
+        if (lyricsColor !== "" && getComputedStyle(e).color === "rgb(255, 255, 255)") {
+            el = e;
+        }
+    })
 
     if (!el) return null;
     window.lyricsParent = el.parentElement;
