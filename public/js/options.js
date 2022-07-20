@@ -116,7 +116,7 @@ const categories = [
         "name": "About",
         "settings": [
             {
-                "name": "Extension",
+                "name": "",
                 "type": "info",
                 "text": "<b>Version</b><br>HeadTab 2.0<br><b>Creator</b><br>sverben<br><b>Default wallpaper</b><br>Photo by <a href=\"https://unsplash.com/@sebastiansvenson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Sebastian Svenson</a> on <a href=\"https://unsplash.com/@sebastiansvenson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>"
             }

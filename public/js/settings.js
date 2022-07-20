@@ -31,7 +31,7 @@ els[0].click();
 
 function open(category) {
     settings.innerHTML = "";
-    const title = document.createElement("h1");
+    const title = document.createElement("h2");
     title.innerText = category.name;
     settings.append(title);
     for (let setting in category.settings) {

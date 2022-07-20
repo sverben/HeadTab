@@ -1,7 +1,7 @@
 body {
     margin: 0;
     display: flex;
-    background-color: #22222C;
+    background-color: #151823;
     color: white;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
@@ -10,25 +10,25 @@ body {
 h2 {
     text-align: center;
 }
+.settings h2 {
+    text-align: center;
+    margin-bottom: 0;
+}
 
 .categories {
-    background-color: #303039;
-    box-shadow: black 0px 0px 10px;
-    padding: 20px;
+    background-color: #1c202f;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 300px;
-    justify-content: center;
 }
 
 .category {
-    padding: 15px 15px 15px 20px;
-    border-radius: 7px;
+    padding: 10px 10px 10px 15px;
+    border-radius: 5px;
     font-size: 14px;
-    background-color: #22222C;
-    text-transform: uppercase;
-    font-weight: bolder;
+    background-color: #151823;
     position: relative;
     cursor: pointer;
 }
@@ -39,9 +39,9 @@ h2 {
     left: 0;
     width: 10px;
     height: 100%;
-    background: linear-gradient(to right, #76b852, #8dc26f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
+    background: #19947d;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
     transition: .4s ease;
     z-index: 0;
 }
@@ -52,40 +52,41 @@ h2 {
 }
 
 .selected .accent {
-    border-radius: 7px;
+    border-radius: 5px;
     width: 100%;
 }
 
 .settings {
     flex: 1;
-    padding-left: 20px;
+    padding: 10px 10px 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 .line {
     display: flex;
     width: 300px;
     align-items: center;
-    gap: 7px;
+    gap: 4px;
 }
 .spacer {
     flex: 1;
 }
 .name {
-    font-size: 17px;
-    margin-bottom: 20px;
+    font-size: 15px;
+    margin: 0 0 5px;
 }
 .help {
-    font-size: 15px;
+    font-size: 13px;
     color: white;
-    background-color: #303039;
+    background-color: #1c202f;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     position: relative;
 }
@@ -96,7 +97,7 @@ h2 {
     height: 13px;
     width: max-content;
     left: -10px;
-    background-color: #303039;
+    background-color: #1c202f;
     border-radius: 10px;
     padding: 10px;
     z-index: 100;
@@ -108,29 +109,26 @@ h2 {
     width: 10px;
     height: 10px;
     bottom: -5px;
-    background-color: #303039;
+    background-color: #1c202f;
     transform: rotate(45deg);
 }
 
 select, .text {
-    background-color: #303039;
+    background-color: #1c202f;
     color: white;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     width: 300px;
     outline: 0;
-    border: 1px solid #303039;
+    border: 1px solid #1c202f;
     transition: .4s ease;
 }
 select:focus, .text:focus {
-    border: 1px solid #ffffff50;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 5%), 0 0 0 0.15rem #19947d80;
 }
 
-.text {
-    width: 280px;
-}
 .btn {
-    height: 44px;
+    height: 34px;
     width: unset;
 }
 input[type=file] {
@@ -140,10 +138,10 @@ input[type=file] {
 
 .check {
     position: relative;
-    background-color: #303039;
+    background-color: #1c202f;
     border-radius: 25px;
-    width: 46px;
-    height: 23px;
+    width: 32px;
+    height: 15px;
     padding: 2px;
     cursor: pointer;
     transition: .4s ease;
@@ -152,8 +150,8 @@ input[type=file] {
     background-color: #76b852;
 }
 .check:before {
-    width: 23px;
-    height: 23px;
+    width: 15px;
+    height: 15px;
     content: "";
     position: absolute;
     top: 2px;
@@ -163,8 +161,7 @@ input[type=file] {
     transition: .4s ease;
 }
 .on:before {
-
-    left: 25px;
+    left: 19px;
 }
 .close {
     cursor: pointer;
@@ -173,7 +170,7 @@ input[type=file] {
     right: 20px;
     width: 40px;
     height: 40px;
-    background-color: #303039;
+    background-color: #1c202f;
     border-radius: 7px;
     display: flex;
     justify-content: center;
@@ -183,10 +180,13 @@ input[type=file] {
 .info {
     font-size: 15px;
 }
-.info b {
-    font-size: 17px;
-}
 
 a {
     color: #49caf4;
+}
+
+.setting {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
