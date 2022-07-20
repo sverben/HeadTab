@@ -36,7 +36,7 @@ body {
 .info > p {
     margin-top: 10px;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 h2 {
     font-size: 24px;
@@ -96,21 +96,16 @@ h2 {
 .weather {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    margin-top: 7px;
 }
 .weather > img {
-    width: 40px;
+    width: 15px;
     float: left;
-    filter: invert(1);
 }
 
-.city {
-    font-weight: bold;
-    margin-top: 17px;
-    margin-bottom: 2px;
-}
 .description {
-    margin-top: 0px;
+    margin: 0;
 }
 
 

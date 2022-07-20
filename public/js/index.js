@@ -155,12 +155,11 @@ function getWeather() {
         .then(data => {
             const weather = document.querySelector(".weather");
             const img = weather.querySelector("img");
-            const city = weather.querySelector(".city");
             const desc = weather.querySelector(".description");
 
-            img.src = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${data.weather[0].icon}.svg`;
-            city.innerText = data.name;
-            desc.innerText = data.weather[0].description;
+            img.src = `../weather/${data.weather[0].icon}.png`;
+            const description = data.weather[0].description;
+            desc.innerText = description.substring(0, 1).toUpperCase() + description.substring(1, description.length);
         })
 }
 if (localStorage.getItem("weather") === "true") getWeather();
