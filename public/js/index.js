@@ -141,7 +141,7 @@ function updateClock() {
     }
     clock.innerText = `${hour}:${minute}${append}`;
     day.innerText = `${days[date.getDay()]} ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-    hello.innerText = `Good ${partOfDay(date.getHours())}, ${name ? name : "HeadTab"}`;
+    hello.innerText = `Good ${partOfDay(date.getHours())}${name ? `, ${name}` : ""}`;
 
     setTimeout(updateClock, (60 - date.getSeconds()) * 1000);
 }
