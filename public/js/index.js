@@ -10,7 +10,6 @@ const weather = document.querySelector("#weather");
 const info = document.querySelector(".info");
 const text = document.querySelector(".text");
 const battery = document.querySelector(".battery");
-const level = document.querySelector('.level');
 const musicLine = document.querySelector(".musicLine");
 const artwork = document.querySelector(".artwork");
 const company = document.querySelector(".company");
@@ -419,10 +418,3 @@ function isEqual (value, other) {
 
 audioUpdates();
 if (localStorage.getItem("battery") !== "true") battery.style.display = "none";
-
-(async () => {
-    await navigator.getBattery().then(battery => {
-        level.style.height = `${battery.level * 100}%`;
-        level.title = `Battery: ${battery.level * 100}%${battery.charging ? '\nCharging' : ''}`;
-    });
-})();
