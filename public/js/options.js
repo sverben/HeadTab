@@ -118,7 +118,7 @@ const categories = [
             {
                 "name": "",
                 "type": "info",
-                "text": "<b>Version</b><br>HeadTab 2.0<br><b>Creator</b><br>sverben<br><b>Default wallpaper</b><br>Photo by <a href=\"https://unsplash.com/@sebastiansvenson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Sebastian Svenson</a> on <a href=\"https://unsplash.com/@sebastiansvenson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>"
+                "text": "<b>Version</b><br>HeadTab 2.0<br><b>Creator</b><br>sverben<br><b>Default wallpaper</b><br>Photo by <a href=\"https://unsplash.com/@danielleone?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Daniel Leone</a> on <a href=\"https://unsplash.com/collections/4474938/new-tab-backgrounds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>"
             }
         ]
     }
