@@ -142,6 +142,78 @@ function open(category) {
 
             el.append(line);
         }
+        else if (setting.type === "background") {
+            const wallpapers = document.createElement("div");
+            wallpapers.classList.add("wallpapers");
+
+            const defaultWallpaper = document.createElement("div");
+            defaultWallpaper.classList.add("wallpaper");
+            defaultWallpaper.style.background = "url('../media/wallpaper.jpg')";
+            defaultWallpaper.style.backgroundSize = "cover";
+            defaultWallpaper.style.backgroundPosition = "center";
+            wallpapers.append(defaultWallpaper);
+
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.accept = "image/*";
+            fileInput.setAttribute("id", "customWallpaper");
+            fileInput.classList.add("hidden");
+            wallpapers.append(fileInput);
+            const customWallpaper = document.createElement("label");
+            customWallpaper.setAttribute("for", "customWallpaper");
+            customWallpaper.classList.add("wallpaper");
+            const placeholder = document.createElement("div");
+            placeholder.classList.add("placeholder");
+            const icon = document.createElement("img");
+            icon.src = "../media/upload.svg";
+            const p = document.createElement("p");
+            p.innerText = "Upload a wallpaper";
+            placeholder.append(icon, p);
+            customWallpaper.append(placeholder);
+            fileInput.addEventListener("change", e => {
+                if (!fileInput.files) return;
+                localStorage.setItem(setting.storage, "upload");
+                getBase64(fileInput.files[0]).then(async data => {
+                    await chrome.storage.local.set({
+                        [setting.storage]: data
+                    })
+                    fileInput.value = null;
+
+                    customWallpaper.classList.add("chosen");
+                    customWallpaper.style.background = `url('${data}') no-repeat`;
+                    customWallpaper.style.backgroundSize = "cover";
+                    customWallpaper.style.backgroundPosition = "center";
+                    placeholder.style.display = "none";
+                    defaultWallpaper.classList.remove("chosen");
+                });
+            });
+            wallpapers.append(customWallpaper);
+
+            defaultWallpaper.addEventListener("click", async () => {
+                await chrome.storage.local.set({
+                    [setting.storage]: "default"
+                });
+                defaultWallpaper.classList.add("chosen");
+                customWallpaper.classList.remove("chosen");
+                customWallpaper.style.background = "unset";
+                placeholder.style.display = "flex";
+            })
+
+            chrome.storage.local.get("background", async (data) => {
+                const isCustom = data.background !== "default";
+                if (isCustom) {
+                    customWallpaper.style.background = `url('${data.background}') no-repeat`;
+                    customWallpaper.style.backgroundSize = "cover";
+                    customWallpaper.style.backgroundPosition = "center";
+                    customWallpaper.classList.add("chosen");
+                    placeholder.style.display = "none";
+                } else {
+                    defaultWallpaper.classList.add("chosen");
+                }
+            });
+
+            el.append(wallpapers);
+        }
         settings.append(el);
     }
 }

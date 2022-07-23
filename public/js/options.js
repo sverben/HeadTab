@@ -31,7 +31,7 @@ const categories = [
             },
             {
                 "name": "Wallpaper",
-                "type": "text",
+                "type": "background",
                 "file": true,
                 "storage": "background"
             }
